@@ -1,6 +1,4 @@
-package com.zz.model;
-
-import com.fasterxml.jackson.annotation.JsonSetter;
+package com.zz.response;
 
 public class ResponseObject<T> {
     protected int code;
@@ -38,7 +36,7 @@ public class ResponseObject<T> {
     }
 
     public static <T> ResponseObject<T> success(T data) {
-        return new ResponseObject<>(200, data, "success");
+        return new ResponseObject<>(HttpStatus.OK.getCode(), data, "success");
     }
 
     public static <T> ResponseObject<T> error(int code, String msg) {

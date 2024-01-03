@@ -2,6 +2,8 @@ package com.zz.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Account {
     @Id
@@ -13,14 +15,35 @@ public class Account {
     @Column(name = "`desc`")
     private String desc;
 
-
     // 随便传先
     private int type;
+
+    public List<Member> getMembers() {
+        return members;
+    }
+
+    public void setMembers(List<Member> members) {
+        this.members = members;
+    }
 
     // 随便传先
     private int secureType;
 
     private int userId;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
+    private List<Member> members;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.REMOVE)
+    private List<Payment> payments;
+
+    public List<Payment> getPayments() {
+        return payments;
+    }
+
+    public void setPayments(List<Payment> payments) {
+        this.payments = payments;
+    }
 
     public Integer getId() {
         return id;

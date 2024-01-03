@@ -15,6 +15,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(tokenInterceptor)
-                .addPathPatterns("/account/**"); // 设置需要拦截的路径
+                .excludePathPatterns("/user/**"); // 设置需要拦截的路径
     }
 }

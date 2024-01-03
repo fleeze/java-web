@@ -22,6 +22,9 @@ public class TokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println("进入拦截器");
+        System.out.println(request.getRequestURI());
+        System.out.println("Authorization " + request.getHeader("Authorization"));
         // 在这里进行 Token 验证的逻辑，获取 userId
         String token = request.getHeader("Authorization"); // 假设 Token 存放在请求头的 Authorization 字段中
         // 进行 Token 验证的逻辑，获取 userId

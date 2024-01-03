@@ -1,7 +1,9 @@
-# Dockerfile
+FROM maven:3.8.4-openjdk-11-slim AS build
+WORKDIR /app
+COPY . .
+RUN mvn clean package
 
-# 使用Tomcat基础镜像
-FROM tomcat:9.0-jre11
-
-# 复制WAR包到Tomcat的webapps目录下
-COPY target/java-web-1.0.war /usr/local/tomcat/webapps/
+FROM openjdk:11-jre-slim
+WORKDIR /app
+COPY --from=build /app/target/java-web-1.0.war ./app.jar
+CMD ["java", "-jar", "app.jar"]
